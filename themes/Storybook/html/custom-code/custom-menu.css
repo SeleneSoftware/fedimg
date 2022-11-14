@@ -1,0 +1,123 @@
+html.loaded {
+    scroll-behavior: smooth;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+	html.loaded {
+		scroll-behavior: auto;
+	}
+}
+
+.title-section {
+    pointer-events: none;
+}
+
+.container.menu-container {
+    height: calc(100vh - 32px);
+    overflow-x: hidden;
+}
+
+@media screen and (max-width: 60rem) {
+    .container.menu-container {
+        height: auto;
+    }
+
+    .container.menu-container.show-menu {
+        height: 100vh; /* Fallback */
+        height: calc(var(--viewport-height, 1vh) * 100);
+    }
+    
+    .container.menu-items-wrapper.show-menu {
+        height: calc(100vh - 65px); /* Fallback */
+        height: calc(var(--viewport-height, 1vh) * 100 - 65px);
+    }
+}
+
+nav.menu-container,
+nav.menu-container * {
+  box-sizing: border-box;
+}
+
+nav.menu-container a {
+    display: block;
+      -webkit-transition-delay: .5s;
+     -moz-transition-delay: .5s;
+       -o-transition-delay: .5s;
+          transition-delay: .5s;
+  -webkit-transition-duration: .2s;
+     -moz-transition-duration: .2s;
+       -o-transition-duration: .2s;
+          transition-duration: .2s;
+  -webkit-transition-property: all;
+     -moz-transition-property: all;
+       -o-transition-property: all;
+          transition-property: all;
+}
+
+details > summary {
+  list-style: none;
+  display: block;
+  position: relative;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+details > summary:focus {
+  outline: none;
+}
+
+details > summary .line-vertical-plus,
+details > summary .line-horizontal-plus {
+   width: 12px;
+   height: 2px;
+   background-color: #065bfe;
+   color: transparent;
+   display: block;
+   position: absolute;
+   right: 0;
+   top: calc(50% - 2px);
+ -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+      -o-transition-delay: 0s;
+         transition-delay: 0s;
+  -webkit-transition-timing-function: ease-in-out;
+     -moz-transition-timing-function: ease-in-out;
+       -o-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
+ -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+      -o-transition-duration: 0.2s;
+         transition-duration: 0.2s;
+ -webkit-transition-property: all;
+    -moz-transition-property: all;
+      -o-transition-property: all;
+         transition-property: all;
+}
+
+details > summary .line-vertical-plus {
+   transform: rotate(-90deg);
+}
+
+details[open] > summary .line-vertical-plus {
+   transform: rotate(0deg);
+}
+
+details[open] > summary .line-horizontal-plus{
+   transform: rotate(180deg);
+}
+
+details[open] summary ~ * {
+  animation: sweep .5s ease-in-out;
+}
+
+@keyframes sweep {
+  0%    {opacity: 0;}
+  100%  {opacity: 1;}
+}
+
+/* Search Custom Styles */
+.cc-result-highlight {
+    font-weight: 700;
+}

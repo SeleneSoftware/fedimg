@@ -1,0 +1,15 @@
+The following step-by-step instructions will show you how to install HTML Editor Themes.
+
+1. Download your HTML Editor Themes from your Customer Care Center. 
+The themes will be in ZIP format.
+
+2. Make sure HTML Editor is closed.
+
+3. Extract the XML file and the accompanying folder in the theme ZIP files to the desired 
+location on your computer.
+
+4. Open HTML Editor and use the Files tab to select the folder where you unzipped your themes. 
+The window beneath the one you used to browse your computer will display your theme files.
+
+5. Double-click the page you wish to edit, such as index, about-us or contact-us.
+It will open in the Code Editor, and you will be able to modify it normally.

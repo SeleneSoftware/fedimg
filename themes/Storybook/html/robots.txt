@@ -1,0 +1,4 @@
+Sitemap: REPLACE_WITH_YOUR_SERVER_PATH/sitemap.xml
+
+User-agent: *
+Disallow:
