@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Profile;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\AppFormAuthenticator;
@@ -40,7 +41,9 @@ class RegistrationController extends AbstractController
                     $user,
                     $form->get('plainPassword')->getData()
                 )
-            );
+            )
+            ->setProfile((new Profile())->setName('Full Name'))
+            ;
 
             $entityManager->persist($user);
             $entityManager->flush();
