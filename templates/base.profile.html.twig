@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <meta name="generator" content="RSD 5.0.3519">
-        <title>My Story</title>
-        <link rel="icon" href="./images/icons/designer_4.0_win_en.png" type="image/png">
-        <script>document.createElement( "picture" );</script>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600">
-        <title>Gunna need a profile title soon</title>
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="generator" content="RSD 5.0.3519" />
+        <title>
+            My Story
+        </title>
+        <link rel="icon"
+            href="./images/icons/designer_4.0_win_en.png"
+            type="image/png" />
+        <script>
+            document.createElement( "picture" );
+        </script>
+        <link rel="stylesheet"
+            href="https://fonts.bunny.net/css?family=Rubik:300,400,500,600" />
+
         {% block stylesheets %}
             {{ encore_entry_link_tags('profile') }}
         {% endblock %}
@@ -22,78 +28,180 @@
         <div class="container big-container-wrapper">
             <div class="container container-tutorial-content" id="top">
                 {% block profilefeed %}
-                <h1 class="hero-heading">My Feed</h1>
-                {% block coverimage %}
-                <div class="container cover-image"></div>
-                {% endblock %}
-                {% block subheading %}
-                <h2 class="subheading">Eget magna fermentum iaculis eu non diam phasellus vestibulum. Lacus viverra vitae congue eu consequat. Tempor nec feugiat nisl pretium fusce id velit.<br></h2>
-                {% endblock %}
+                    <h1 class="hero-heading">
+                        My Feed
+                    </h1>
+                    {% block coverimage %}
+                        <div class="container cover-image"></div>
+                    {% endblock %}
+                    {% block subheading %}
+                        <h2 class="subheading">
+                            Eget magna fermentum iaculis eu non diam phasellus
+                            vestibulum. Lacus viverra vitae congue eu consequat.
+                            Tempor nec feugiat nisl pretium fusce id velit.<br />
+                        </h2>
+                    {% endblock %}
 
-                {% for i in 0..10 %}
-                <div class="container section-content-guide">
-                    <h2 class="title-section" id="chapter-2">chapter 2</h2>
-                    <h3 class="subtitle-section">Eum fuga reprehenderit tempore quidem suscipit fugiat a recusandae minima. Debitis et exercitationem. Nisi vero deserunt. Expedita aut fugiat autem similique officiis.</h3>
-                    <div class="responsive-picture picture">
-                        <picture>
-                            <img alt="Placeholder Picture" width="1920" height="1155" src="https://picsum.photos/1920/1155" loading="lazy">
-                        </picture>
-                    </div>
-                    <div class="rule rule-section">
-                        <hr>
-                    </div>
-                </div>
-                {% endfor %}
+                    {% for i in 0..10 %}
+                        <div class="container section-content-guide">
+                            <h2 class="title-section" id="chapter-2">
+                                chapter 2
+                            </h2>
+                            <h3 class="subtitle-section">
+                                Eum fuga reprehenderit tempore quidem suscipit
+                                fugiat a recusandae minima. Debitis et
+                                exercitationem. Nisi vero deserunt. Expedita aut
+                                fugiat autem similique officiis.
+                            </h3>
+                            <div class="responsive-picture picture">
+                                <picture>
+                                    <img alt="Placeholder Picture"
+                                        width="1920"
+                                        height="1155"
+                                        src="https://picsum.photos/1920/1155"
+                                        loading="lazy" />
+                                </picture>
+                            </div>
+                            <div class="rule rule-section">
+                                <hr />
+                            </div>
+                        </div>
+                    {% endfor %}
 
-                {% block aboutme %}
-                <div class="container section-content-guide">
-                    <h2 class="title-section" id="about-me">A bit about me</h2>
-                    <div class="responsive-picture picture">
-                        <picture>
-                            <img alt="Placeholder Picture" width="1920" height="1280" src="https://picsum.photos/1920/1280" loading="lazy">
-                        </picture>
-                    </div>
-                    <h3 class="subtitle-section">My story</h3>
-                    <p class="paragraph body-paragraph-tutorial">Non curabitur gravida arcu ac tortor. Vitae elementum curabitur vitae nunc sed velit. Risus commodo viverra maecenas accumsan lacus vel facilisis volutpat est. Bibendum at varius vel pharetra vel turpis nunc. Malesuada fames ac turpis egestas integer eget aliquet nibh praesent. Tellus id interdum velit laoreet. <br><br>Nunc mattis enim ut tellus elementum sagittis vitae et. Risus at ultrices mi tempus imperdiet nulla. Eget mi proin sed libero enim sed faucibus turpis. Eu augue ut lectus arcu bibendum at varius vel pharetra.<br><br>Eget magna fermentum iaculis eu non diam phasellus vestibulum. Lacus viverra vitae congue eu consequat. Tempor nec feugiat nisl pretium fusce id velit. Eget magna fermentum iaculis eu non diam. Elementum integer enim neque volutpat ac tincidunt vitae semper. Eu nisl nunc mi ipsum faucibus vitae aliquet nect.<br></p>
-                    <div class="rule rule-section">
-                        <hr>
-                    </div>
-                </div>
-                {% endblock %}
+                    {% block aboutme %}
+                        <div class="container section-content-guide">
+                            <h2 class="title-section" id="about-me">
+                                A bit about me
+                            </h2>
+                            <div class="responsive-picture picture">
+                                <picture>
+                                    <img alt="Placeholder Picture"
+                                        width="1920"
+                                        height="1280"
+                                        src="https://picsum.photos/1920/1280"
+                                        loading="lazy" />
+                                </picture>
+                            </div>
+                            <h3 class="subtitle-section">
+                                My story
+                            </h3>
+                            <p class="paragraph body-paragraph-tutorial">
+                                Non curabitur gravida arcu ac tortor. Vitae
+                                elementum curabitur vitae nunc sed velit. Risus
+                                commodo viverra maecenas accumsan lacus vel
+                                facilisis volutpat est. Bibendum at varius vel
+                                pharetra vel turpis nunc. Malesuada fames ac
+                                turpis egestas integer eget aliquet nibh
+                                praesent. Tellus id interdum velit laoreet. <br /><br />Nunc
+                                mattis enim ut tellus elementum sagittis vitae
+                                et. Risus at ultrices mi tempus imperdiet nulla.
+                                Eget mi proin sed libero enim sed faucibus
+                                turpis. Eu augue ut lectus arcu bibendum at
+                                varius vel pharetra.<br /><br />Eget magna
+                                fermentum iaculis eu non diam phasellus
+                                vestibulum. Lacus viverra vitae congue eu
+                                consequat. Tempor nec feugiat nisl pretium fusce
+                                id velit. Eget magna fermentum iaculis eu non
+                                diam. Elementum integer enim neque volutpat ac
+                                tincidunt vitae semper. Eu nisl nunc mi ipsum
+                                faucibus vitae aliquet nect.<br />
+                            </p>
+                            <div class="rule rule-section">
+                                <hr />
+                            </div>
+                        </div>
+                    {% endblock %}
                 {% endblock %}
             </div>
             <nav class="container menu-container">
                 {% block navigation %}
-                <div class="container menu-mobile-navigation"><a class="glyph menu-icon" href="#"><i class="coffeecup-icons-menu3"></i></a></div>
-                <div class="container menu-items-wrapper">
-                    <a class="link-text coffeecup-home" href="#top" target="_blank">My Story</a>
-                    <details><summary>
-                            <span class="text-element menu-item-summary" data-page-name="index.html">App Overview <span class="line-vertical-plus">-</span><span class="line-horizontal-plus">-</span></span>
-                        </summary>
-                        <ul class="link-list menu-item-details">
-                            <li class="list-item-link menu-item-link active"><a href="index.html#chapter-1">Chapter 1</a></li>
-                            <li class="list-item-link menu-item-link"><a href="index.html#chapter-2">Chapter 2</a></li>
-                            <li class="list-item-link menu-item-link"><a href="index.html#chapter-3">Chapter 3</a></li>
-                            <li class="list-item-link menu-item-link"><a href="index.html#chapter-4">Chapter 4</a></li>
-                            <li class="list-item-link menu-item-link"><a href="index.html#chapter-5">Chapter 5</a></li>
-                            <li class="list-item-link menu-item-link"><a href="index.html#chapter-6">Chapter 6</a></li>
-                            <li class="list-item-link menu-item-link"><a href="index.html#chapter-7">Chapter 7</a></li>
-                            <li class="list-item-link menu-item-link"><a href="index.html#chapter-8">Chapter 8</a></li>
-                            <li class="list-item-link menu-item-link"><a href="index.html#chapter-9">Chapter 9</a></li>
-                            <li class="list-item-link menu-item-link"><a href="index.html#chapter-10">Chapter 10</a></li>
-                            <li class="list-item-link menu-item-link"><a href="index.html#chapter-11">Chapter 11</a></li>
-                            <li class="list-item-link menu-item-link"><a href="index.html#chapter-12">Chapter 12</a></li>
-                        </ul>
-                    </details>
-                    <details><summary>
-                            <span class="text-element menu-item-summary" data-page-name="your-canvas.html">About Me&nbsp;<span class="line-vertical-plus">-</span><span class="line-horizontal-plus">-</span></span>
-                        </summary>
-                        <ul class="link-list menu-item-details">
-                            <li class="list-item-link menu-item-link active"><a href="index.html#about-me">A bit about me</a></li>
-                        </ul>
-                    </details>
-                </div>
-
+                    <div class="container menu-mobile-navigation">
+                        <a class="glyph menu-icon" href="#">
+                            <i class="coffeecup-icons-menu3"></i>
+                        </a>
+                    </div>
+                    <div class="container menu-items-wrapper">
+                        <a class="link-text coffeecup-home"
+                            href="#top"
+                            target="_blank">
+                            My Story
+                        </a>
+                        <details>
+                            <summary>
+                                <span class="text-element menu-item-summary"
+                                    data-page-name="index.html">
+                                    App Overview <span class="line-vertical-plus">
+                                        -
+                                    </span><span class="line-horizontal-plus">
+                                        -
+                                    </span>
+                                </span>
+                            </summary>
+                            <ul class="link-list menu-item-details">
+                                <li class="list-item-link menu-item-link active">
+                                    <a href="index.html#chapter-1">Chapter 1</a>
+                                </li>
+                                <li class="list-item-link menu-item-link">
+                                    <a href="index.html#chapter-2">Chapter 2</a>
+                                </li>
+                                <li class="list-item-link menu-item-link">
+                                    <a href="index.html#chapter-3">Chapter 3</a>
+                                </li>
+                                <li class="list-item-link menu-item-link">
+                                    <a href="index.html#chapter-4">Chapter 4</a>
+                                </li>
+                                <li class="list-item-link menu-item-link">
+                                    <a href="index.html#chapter-5">Chapter 5</a>
+                                </li>
+                                <li class="list-item-link menu-item-link">
+                                    <a href="index.html#chapter-6">Chapter 6</a>
+                                </li>
+                                <li class="list-item-link menu-item-link">
+                                    <a href="index.html#chapter-7">Chapter 7</a>
+                                </li>
+                                <li class="list-item-link menu-item-link">
+                                    <a href="index.html#chapter-8">Chapter 8</a>
+                                </li>
+                                <li class="list-item-link menu-item-link">
+                                    <a href="index.html#chapter-9">Chapter 9</a>
+                                </li>
+                                <li class="list-item-link menu-item-link">
+                                    <a href="index.html#chapter-10">
+                                        Chapter 10
+                                    </a>
+                                </li>
+                                <li class="list-item-link menu-item-link">
+                                    <a href="index.html#chapter-11">
+                                        Chapter 11
+                                    </a>
+                                </li>
+                                <li class="list-item-link menu-item-link">
+                                    <a href="index.html#chapter-12">
+                                        Chapter 12
+                                    </a>
+                                </li>
+                            </ul>
+                        </details>
+                        <details>
+                            <summary>
+                                <span class="text-element menu-item-summary"
+                                    data-page-name="your-canvas.html">
+                                    About Me&nbsp;<span class="line-vertical-plus">
+                                        -
+                                    </span><span class="line-horizontal-plus">
+                                        -
+                                    </span>
+                                </span>
+                            </summary>
+                            <ul class="link-list menu-item-details">
+                                <li class="list-item-link menu-item-link active">
+                                    <a href="index.html#about-me">
+                                        A bit about me
+                                    </a>
+                                </li>
+                            </ul>
+                        </details>
+                    </div>
                 {% endblock %}
             </nav>
         </div>
