@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class FeedController extends AbstractController
 {
-    #[Route('/feed', name: 'app_feed')]
+    #[Route('/feed/', name: 'app_feed')]
     public function index(): Response
     {
         return $this->render('feed/index.html.twig', [

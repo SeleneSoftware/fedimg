@@ -9,11 +9,11 @@
   <script>document.createElement( "picture" );</script>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+            {{ encore_entry_link_tags('kunst') }}
         {% endblock %}
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('kunst') }}
         {% endblock %}
   <link rel="stylesheet" href="https://fonts.bunny.net/css?family=Inter:400,500">
 <style>::selection { background-color: #e0261b; color: white }</style>
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       <div class="container container-center-picture">
         <div class="responsive-picture picture-project">
           <picture>
-            <img alt="Placeholder Picture" width="1920" height="1280" src="./images/pexels-circling-sea-5625832.jpg" loading="lazy">
+              <img alt="Placeholder Picture" width="1920" height="1280" src="{{ asset('/images/pexels-circling-sea-5625832.jpg') }}" loading="lazy">
           </picture>
         </div>
         <h3 class="heading-3">Girl &amp; Wolf – 2020</h3>
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       </div>
     </div>
   </section>
-  <section class="container video-section">
+  {# <section class="container video-section">
     <div class="container container-projects-title">
       <h2 class="heading-2">Last Film</h2>
     </div>
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         <source src="./video/pexels-mikhail-nilov-6981410.mp4" type="video/mp4">
       </video>
     </div>
-  </section>
+  </section> #}
   <div class="container sd-two-cols two-column-pictures">
     <div class="container container-center-picture">
       <div class="responsive-picture picture-project">
@@ -187,8 +187,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       </div>
     </div>
   </footer>
-  <script src="js/jquery.min.js"></script>
-  <script src="js/outofview.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15/dist/smooth-scroll.polyfills.min.js"></script>
 
 <script>
