@@ -19,6 +19,9 @@ class Profile
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $location = null;
 
+    #[ORM\Column]
+    private array $friends = [];
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class Profile
     public function setLocation(?string $location): self
     {
         $this->location = $location;
+
+        return $this;
+    }
+
+    public function getFriends(): array
+    {
+        return $this->friends;
+    }
+
+    public function setFriends(array $friends): self
+    {
+        $this->friends = $friends;
 
         return $this;
     }
