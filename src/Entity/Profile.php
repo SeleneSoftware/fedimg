@@ -22,6 +22,9 @@ class Profile
     #[ORM\Column]
     private array $friends = [];
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $heading = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class Profile
     public function setFriends(array $friends): self
     {
         $this->friends = $friends;
+
+        return $this;
+    }
+
+    public function getHeading(): ?string
+    {
+        return $this->heading;
+    }
+
+    public function setHeading(?string $heading): self
+    {
+        $this->heading = $heading;
 
         return $this;
     }

@@ -141,10 +141,11 @@ a.link-text.navlink.work-link-desktop-only:hover {
   -ms-flex-align: end;
   min-height: 100vh;
   background-color: #1b1b1b;
-  background-image: -webkit-linear-gradient(65deg, rgba(26, 26, 26, 1) 0%, rgba(0, 0, 0, 0) 50%), url('./images/pexels-whicdhemein-one-4576896.jpg');
-  background-image:    -moz-linear-gradient(65deg, rgba(26, 26, 26, 1) 0%, rgba(0, 0, 0, 0) 50%), url('./images/pexels-whicdhemein-one-4576896.jpg');
-  background-image:      -o-linear-gradient(65deg, rgba(26, 26, 26, 1) 0%, rgba(0, 0, 0, 0) 50%), url('./images/pexels-whicdhemein-one-4576896.jpg');
-  background-image:         linear-gradient(25deg, rgba(26, 26, 26, 1) 0%, rgba(0, 0, 0, 0) 50%), url('./images/pexels-whicdhemein-one-4576896.jpg');
+  // This is being dealt with in the HTML as an inline style.  I know, bad.  Sue me.
+  // background-image: -webkit-linear-gradient(65deg, rgba(26, 26, 26, 1) 0%, rgba(0, 0, 0, 0) 50%), url('./images/pexels-whicdhemein-one-4576896.jpg');
+  // background-image:    -moz-linear-gradient(65deg, rgba(26, 26, 26, 1) 0%, rgba(0, 0, 0, 0) 50%), url('./images/pexels-whicdhemein-one-4576896.jpg');
+  // background-image:      -o-linear-gradient(65deg, rgba(26, 26, 26, 1) 0%, rgba(0, 0, 0, 0) 50%), url('./images/pexels-whicdhemein-one-4576896.jpg');
+  // background-image:         linear-gradient(25deg, rgba(26, 26, 26, 1) 0%, rgba(0, 0, 0, 0) 50%), url('./images/pexels-whicdhemein-one-4576896.jpg');
   background-attachment: scroll, fixed;
   background-position: left top, center center;
   background-clip: border-box, border-box;

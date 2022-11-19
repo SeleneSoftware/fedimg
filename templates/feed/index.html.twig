@@ -1,2 +1,39 @@
-{% extends 'base.kunst.html.twig' %}
+{% extends 'base.' ~ theme ~ '.html.twig' %}
 
+{% block feedTwoPic %}
+{% endblock %}
+
+{% block navbar %}
+    <nav class="container navbar">
+        {% if app.user %}
+            <a class="link-text logo-nav-link" href="{{ path('profile') }}">
+                {{ app.user.getUsername }}<br />Profile
+            </a>
+        {% endif %}
+    </nav>
+{% endblock %}
+
+{% block feed %}
+    <section class="container projects-section" id="projects">
+        {% for row in range(1, 16)|batch(2, '') %}
+        <div class="container sd-two-cols two-column-pictures">
+            {% for pic in row %}
+            <div class="container container-center-picture">
+                <div class="responsive-picture picture-project">
+                    <picture>
+                        <img alt="Placeholder Picture"
+                            width="1920"
+                            height="1280"
+                            src="https://picsum.photos/1280/191{{ pic }}"
+                            loading="lazy" />
+                    </picture>
+                </div>
+                <h3 class="heading-3">
+                    Girl &amp; Wolf – 2020
+                </h3>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </section>
+{% endblock %}
