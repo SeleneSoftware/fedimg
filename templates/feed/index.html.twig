@@ -1,6 +1,7 @@
 {% extends 'base.' ~ theme ~ '.html.twig' %}
 
 {% block feedTwoPic %}
+
 {% endblock %}
 
 {% block navbar %}
@@ -13,30 +14,30 @@
     </nav>
 {% endblock %}
 
-{# This is built for the Kunst theme, but I'm gunna fix it.  Later. #}
+{# This is built for the Kunst theme, but I'm gunna fix it. Later. #}
 {% block feed %}
     <section class="container projects-section" id="projects">
         {% for row in feed|batch(2, null) %}
-        <div class="container sd-two-cols two-column-pictures">
-            {% for pic in row %}
-                {% if pic %}
-            <div class="container container-center-picture">
-                <div class="responsive-picture picture-project">
-                    <picture>
-                        <img alt="Placeholder Picture"
-                            width="1920"
-                            height="1280"
-                            src="{{ pic.getImage }}"
-                            loading="lazy" />
-                    </picture>
-                </div>
-                <h3 class="heading-3">
-                    {{ pic.getTitle }}
-                </h3>
+            <div class="container sd-two-cols two-column-pictures">
+                {% for pic in row %}
+                    {% if pic %}
+                        <div class="container container-center-picture">
+                            <div class="responsive-picture picture-project">
+                                <picture>
+                                    <img alt="Placeholder Picture"
+                                        width="1920"
+                                        height="1280"
+                                        src="{{ vich_uploader_asset(pic) }}"
+                                        loading="lazy" />
+                                </picture>
+                            </div>
+                            <h3 class="heading-3">
+                                {{ pic.getTitle }}
+                            </h3>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
-            {% endif %}
-            {% endfor %}
-        </div>
         {% endfor %}
     </section>
 {% endblock %}
