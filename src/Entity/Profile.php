@@ -19,8 +19,8 @@ class Profile
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $location = null;
 
-    #[ORM\Column]
-    private array $friends = [];
+    // #[ORM\Column(nullable: true)]
+    // private array $friends = [];
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $heading = null;

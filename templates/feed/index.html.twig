@@ -13,25 +13,28 @@
     </nav>
 {% endblock %}
 
+{# This is built for the Kunst theme, but I'm gunna fix it.  Later. #}
 {% block feed %}
     <section class="container projects-section" id="projects">
-        {% for row in range(1, 16)|batch(2, '') %}
+        {% for row in feed|batch(2, null) %}
         <div class="container sd-two-cols two-column-pictures">
             {% for pic in row %}
+                {% if pic %}
             <div class="container container-center-picture">
                 <div class="responsive-picture picture-project">
                     <picture>
                         <img alt="Placeholder Picture"
                             width="1920"
                             height="1280"
-                            src="https://picsum.photos/1280/191{{ pic }}"
+                            src="{{ pic.getImage }}"
                             loading="lazy" />
                     </picture>
                 </div>
                 <h3 class="heading-3">
-                    Girl &amp; Wolf – 2020
+                    {{ pic.getTitle }}
                 </h3>
             </div>
+            {% endif %}
             {% endfor %}
         </div>
         {% endfor %}

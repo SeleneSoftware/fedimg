@@ -6,7 +6,16 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
-import './styles/app.kunst.scss';
+import "./styles/app.kunst.scss";
 
 // start the Stimulus application
-import './bootstrap';
+import "./bootstrap";
+
+import smoothscroll from "smoothscroll-polyfill";
+
+var scroll = new SmoothScroll('a[href*="#"][data-scroll]', {
+    speed: 750,
+});
+
+// kick off the polyfill!
+smoothscroll.polyfill();

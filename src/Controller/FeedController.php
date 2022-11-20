@@ -14,9 +14,11 @@ class FeedController extends AbstractController
     #[Entity('User', options: ['username' => 'username'])]
     public function index(User $user): Response
     {
+
         // Once I get more in the profiles, I'll make more of the themes and this will make sense.
         return $this->render('feed/index.html.twig', [
             'theme' => 'kunst',
+            'feed' => $user->getPosts(),
         ]);
     }
 }

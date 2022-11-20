@@ -23,6 +23,9 @@ class Post
     #[ORM\Column]
     private ?bool $public = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class Post
     public function setPublic(bool $public): self
     {
         $this->public = $public;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
