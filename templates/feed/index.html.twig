@@ -21,20 +21,22 @@
             <div class="container sd-two-cols two-column-pictures">
                 {% for pic in row %}
                     {% if pic %}
-                        <div class="container container-center-picture">
-                            <div class="responsive-picture picture-project">
-                                <picture>
-                                    <img alt="Placeholder Picture"
-                                        width="1920"
-                                        height="1280"
-                                        src="{{ vich_uploader_asset(pic) }}"
-                                        loading="lazy" />
-                                </picture>
+                        {% if pic.isPublic %}
+                            <div class="container container-center-picture">
+                                <div class="responsive-picture picture-project">
+                                    <picture>
+                                        <img alt="Placeholder Picture"
+                                            width="1920"
+                                            height="1280"
+                                            src="{{ vich_uploader_asset(pic) }}"
+                                            loading="lazy" />
+                                    </picture>
+                                </div>
+                                <h3 class="heading-3">
+                                    {{ pic.getTitle }}
+                                </h3>
                             </div>
-                            <h3 class="heading-3">
-                                {{ pic.getTitle }}
-                            </h3>
-                        </div>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             </div>
