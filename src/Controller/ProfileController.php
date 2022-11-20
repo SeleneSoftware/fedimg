@@ -40,4 +40,18 @@ class ProfileController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    #[Route('/profile/settings', name: 'profile_settings')]
+    public function settings(): Response
+    {
+        return $this->render('profile/index.html.twig', [
+        ]);
+    }
+
+    #[Route('/profile/feed', name: 'profile_feed')]
+    public function feed(): Response
+    {
+        return $this->render('profile/index.html.twig', [
+        ]);
+    }
 }

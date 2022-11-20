@@ -19,11 +19,11 @@ class Profile
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $location = null;
 
-    // #[ORM\Column(nullable: true)]
-    // private array $friends = [];
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $heading = null;
+
+    #[ORM\Column(nullable: true)]
+    private array $friends = [];
 
     public function getId(): ?int
     {
@@ -54,18 +54,6 @@ class Profile
         return $this;
     }
 
-    public function getFriends(): array
-    {
-        return $this->friends;
-    }
-
-    public function setFriends(array $friends): self
-    {
-        $this->friends = $friends;
-
-        return $this;
-    }
-
     public function getHeading(): ?string
     {
         return $this->heading;
@@ -74,6 +62,18 @@ class Profile
     public function setHeading(?string $heading): self
     {
         $this->heading = $heading;
+
+        return $this;
+    }
+
+    public function getFriends(): array
+    {
+        return $this->friends;
+    }
+
+    public function setFriends(?array $friends): self
+    {
+        $this->friends = $friends;
 
         return $this;
     }
