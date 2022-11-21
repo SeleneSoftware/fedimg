@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Hosts;
 use App\Entity\Setting;
 use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
@@ -17,9 +18,15 @@ class ApiController extends AbstractController
     {
         $repo = $doctrine->getRepository(Setting::class);
         $u = $doctrine->getRepository(User::class)->findAll();
+        $h = $doctrine->getRepository(Hosts::class)->findAll();
         $users = [];
+        $hosts = [];
         foreach ($u as $v) {
             $users[] = $v->getUsername();
+        }
+        foreach ($h as $v) {
+            $hosts[$v->getNick()]['name'] = $v->getName();
+            $hosts[$v->getNick()]['url'] = $v->getUrl();
         }
         // Any of the site settings are hard coded here because why not?
         $siteName = $repo->findOneByName('sitename');
@@ -30,6 +37,7 @@ class ApiController extends AbstractController
             'SiteNick' => $siteNick->getValue(),
             'SiteDesc' => $siteDesc->getValue(),
             'Users' => $users,
+            'Hosts' => $hosts,
         ]);
 
         return $response;
