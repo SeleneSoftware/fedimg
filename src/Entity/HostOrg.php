@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\HostsRepository;
+use App\Repository\HostOrgRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: HostsRepository::class)]
-class Hosts
+#[ORM\Entity(repositoryClass: HostOrgRepository::class)]
+class HostOrg
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

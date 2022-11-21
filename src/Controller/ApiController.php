@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Hosts;
+use App\Entity\HostOrg;
 use App\Entity\Setting;
 use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
@@ -18,7 +18,7 @@ class ApiController extends AbstractController
     {
         $repo = $doctrine->getRepository(Setting::class);
         $u = $doctrine->getRepository(User::class)->findAll();
-        $h = $doctrine->getRepository(Hosts::class)->findAll();
+        $h = $doctrine->getRepository(HostOrg::class)->findAll();
         $users = [];
         $hosts = [];
         foreach ($u as $v) {
@@ -37,7 +37,7 @@ class ApiController extends AbstractController
             'SiteNick' => $siteNick->getValue(),
             'SiteDesc' => $siteDesc->getValue(),
             'Users' => $users,
-            'Hosts' => $hosts,
+            'HostOrg' => $hosts,
         ]);
 
         return $response;
