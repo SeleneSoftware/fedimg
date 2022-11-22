@@ -6,6 +6,7 @@ use App\Entity\HostOrg;
 use App\Entity\Setting;
 use App\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ApiController extends AbstractController
 {
-    #[Route('/api', name: 'app_api')]
+    #[Route('/api', name: 'api')]
     public function index(ManagerRegistry $doctrine): Response
     {
         $repo = $doctrine->getRepository(Setting::class);
@@ -39,6 +40,23 @@ class ApiController extends AbstractController
             'Users' => $users,
             'HostOrg' => $hosts,
         ]);
+
+        return $response;
+    }
+
+    #[Route('/api/user/{user}', name: 'api-user')]
+    #[Entity('User', options: ['username' => 'username'])]
+    public function user(User $user, ManagerRegistery $doctrine)
+    {
+        $response = new JsonResponse([]);
+
+        return $response;
+    }
+
+    #[Route('/api/announce', name: 'api-announce')]
+    public function announce(ManagerRegistry $doctrine): Response
+    {
+        $response = new JsonResponse([]);
 
         return $response;
     }

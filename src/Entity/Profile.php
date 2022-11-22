@@ -14,7 +14,7 @@ class Profile
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    private ?string $name = 'Full Name';
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $location = null;
