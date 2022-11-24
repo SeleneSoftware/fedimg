@@ -83,14 +83,14 @@ class InstallNewCommand extends Command
 
     private function siteOptions($helper)
     {
-        $repo = $doctrine->getRepository(Setting::class);
+        $repo = $this->doctrine->getRepository(Setting::class);
 
-        $question = new Question('Enter FedImg Site name', 'FedImg');
-        $repo->add('sitename', $helper->ask($input, $output, $question));
-        $question = new Question('Enter FedImg Site nickname', 'FedImg');
-        $repo->add('sitenick', $helper->ask($input, $output, $question));
-        $question = new Question('Enter FedImg Site description', 'My New FedImg Instance');
-        $repo->add('sitedesc', $helper->ask($input, $output, $question));
+        // $question = new Question('Enter FedImg Site name', 'FedImg');
+        $repo->add('sitename', $helper->ask('Enter FedImg Site name', 'FedImg'));
+        // $question = new Question('Enter FedImg Site nickname', 'FedImg');
+        $repo->add('sitenick', $helper->ask('Enter FedImg Site nickname', 'FedImg'));
+        // $question = new Question('Enter FedImg Site description', 'My New FedImg Instance');
+        $repo->add('sitedesc', $helper->ask('Enter FedImg Site description', 'My New FedImg Instance'));
 
         // Just putting this here because no email verifications yet
         $repo->add('emailverify', 'no', true);
@@ -101,9 +101,21 @@ class InstallNewCommand extends Command
         $filesystem = new Filesystem();
 
         try {
+            // var_dump($db);
+            // exit('what the hell');
             $filesystem->dumpFile(
-                Path::normalize('.env.local'), "APP_ENV=prod
-DATABASE_URL=\"mysql://{$db['User']}:{$db['Pass']}@{$db['Host']}:{$db['Port']}/{$db['Name']}?serverVersion=8&charset=utf8mb4\""
+                Path::normalize('.env.local'), "APP_ENV=prod\n".
+                'DATABASE_URL="mysql://'
+                .$db['database']['User']
+                .':'
+                .$db['database']['Pass']
+                .'@'
+                .$db['database']['Host']
+                .':'
+                .$db['database']['Port']
+                .'/'
+                .$db['database']['Name']
+                .'?serverVersion=8&charset=utf8mb4"'
             );
         } catch (IOExceptionInterface $exception) {
             echo 'An error occurred while creating your directory at '.$exception->getPath();
