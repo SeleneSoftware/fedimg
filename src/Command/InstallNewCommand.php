@@ -98,8 +98,6 @@ class InstallNewCommand extends Command
 
     private function createEnv(array $db)
     {
-        var_dump($db);
-        exit('fuck');
         $filesystem = new Filesystem();
 
         try {
