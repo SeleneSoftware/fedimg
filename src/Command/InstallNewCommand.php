@@ -54,9 +54,9 @@ class InstallNewCommand extends Command
             'email' => $email,
         ]);
 
-        $this->siteOptions($helper);
-
         $migrate = $this->runDoctrine($output);
+
+        $this->siteOptions($helper);
 
         $this->emailSettings($email);
 
