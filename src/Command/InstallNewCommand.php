@@ -104,7 +104,7 @@ class InstallNewCommand extends Command
 
         try {
             $filesystem->dumpFile(
-                Path::normalize('.env.local'), "
+                Path::normalize('.env.local'), "APP_ENV=prod
 DATABASE_URL=\"mysql://{$db['User']}:{$db['Pass']}@{$db['Host']}:{$db['Port']}/{$db['Name']}?serverVersion=8&charset=utf8mb4\""
             );
         } catch (IOExceptionInterface $exception) {
