@@ -21,6 +21,17 @@ class SettingRepository extends ServiceEntityRepository
         parent::__construct($registry, Setting::class);
     }
 
+    public function add(string $name, string $value, bool $flush = false): void
+    {
+        $entity = new Setting();
+        $entity->setName($name)->setValue($value);
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
     public function save(Setting $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
