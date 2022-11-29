@@ -77,4 +77,13 @@ class Profile
 
         return $this;
     }
+
+    public function addFriend(string $friendcode): self
+    {
+        $this->friends[] = $friendcode;
+
+        $this->friends = array_unique($this->friends);
+
+        return $this;
+    }
 }

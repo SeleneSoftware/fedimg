@@ -4,6 +4,7 @@
 
 {% endblock %}
 
+{# This is built for the Kunst theme, but I'm gunna fix it. Later. #}
 {% block navbar %}
     <nav class="container navbar">
         {% if app.user %}
@@ -11,6 +12,9 @@
                 {{ app.user.getUsername }}<br />Profile
             </a>
         {% endif %}
+        <a class="link-text logo-nav-link" href="{{ path('feed-follow',{'usercode':userCode}) }}">
+            Follow Me<br />{{ userCode }}
+            </a>
     </nav>
 {% endblock %}
 

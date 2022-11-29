@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta name="generator" content="RSD 5.0.3519" />
         <title>
-            My Story
+            {% block title %}
+                My Story
+            {% endblock %}
         </title>
         <link rel="icon"
             href="./images/icons/designer_4.0_win_en.png"
@@ -42,31 +44,34 @@
                         </h2>
                     {% endblock %}
 
-                    {% for i in 0..10 %}
-                        <div class="container section-content-guide">
-                            <h2 class="title-section" id="chapter-2">
-                                chapter 2
-                            </h2>
-                            <h3 class="subtitle-section">
-                                Eum fuga reprehenderit tempore quidem suscipit
-                                fugiat a recusandae minima. Debitis et
-                                exercitationem. Nisi vero deserunt. Expedita aut
-                                fugiat autem similique officiis.
-                            </h3>
-                            <div class="responsive-picture picture">
-                                <picture>
-                                    <img alt="Placeholder Picture"
-                                        width="1920"
-                                        height="1155"
-                                        src="https://picsum.photos/1920/1155"
-                                        loading="lazy" />
-                                </picture>
+                    {% block friendfeed %}
+                        {% for i in 0..10 %}
+                            <div class="container section-content-guide">
+                                <h2 class="title-section" id="chapter-2">
+                                    chapter 2
+                                </h2>
+                                <h3 class="subtitle-section">
+                                    Eum fuga reprehenderit tempore quidem
+                                    suscipit fugiat a recusandae minima. Debitis
+                                    et exercitationem. Nisi vero deserunt.
+                                    Expedita aut fugiat autem similique
+                                    officiis.
+                                </h3>
+                                <div class="responsive-picture picture">
+                                    <picture>
+                                        <img alt="Placeholder Picture"
+                                            width="1920"
+                                            height="1155"
+                                            src="https://picsum.photos/1920/1155"
+                                            loading="lazy" />
+                                    </picture>
+                                </div>
+                                <div class="rule rule-section">
+                                    <hr />
+                                </div>
                             </div>
-                            <div class="rule rule-section">
-                                <hr />
-                            </div>
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    {% endblock %}
 
                     {% block aboutme %}
                         <div class="container section-content-guide">

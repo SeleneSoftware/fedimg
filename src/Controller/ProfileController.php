@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Twig\Functions\FriendsFunctions;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,9 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProfileController extends AbstractController
 {
     #[Route('/profile', name: 'profile')]
-    public function index(): Response
+    public function index(FriendsFunctions $friends): Response
     {
         return $this->render('profile/index.html.twig', [
+            'up' => $friends->getUserPhotos('bunny@fedimgdev'),
         ]);
     }
 

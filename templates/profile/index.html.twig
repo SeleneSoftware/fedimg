@@ -1,4 +1,33 @@
 {% extends 'base.profile.html.twig' %}
 
-{% block title %}Hello ProfileController!{% endblock %}
+{% block title %}
+    {{ app.user.getUsername }} - Friends and Feed
+{% endblock %}
 
+{% block friendfeed %}
+
+    {% for i in up %}
+        <div class="container section-content-guide">
+            <h2 class="title-section" id="chapter-2">
+                Photo
+            </h2>
+            <h3 class="subtitle-section">
+                Eum fuga reprehenderit tempore quidem suscipit fugiat a
+                recusandae minima. Debitis et exercitationem. Nisi vero
+                deserunt. Expedita aut fugiat autem similique officiis.
+            </h3>
+            <div class="responsive-picture picture">
+                <picture>
+                    <img alt="Placeholder Picture"
+                        width="1920"
+                        height="1155"
+                        src="{{ vich_uploader_asset(i) }}"
+                        loading="lazy" />
+                </picture>
+            </div>
+            <div class="rule rule-section">
+                <hr />
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
