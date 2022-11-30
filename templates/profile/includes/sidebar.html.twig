@@ -4,11 +4,11 @@
     </a>
 </div>
 <div class="container menu-items-wrapper">
-    <a class="link-text coffeecup-home" href="#top" target="_blank">My Feed</a>
+    <a class="link-text coffeecup-home" href="{{ path('profile') }}">My Feed</a>
     <details>
         <summary>
             <span class="text-element menu-item-summary"
-                  data-page-name="index.html">
+                data-page-name="index.html">
                 Friends <span class="line-vertical-plus">
                     -
                 </span><span class="line-horizontal-plus">-</span>
@@ -16,16 +16,25 @@
         </summary>
         <ul class="link-list menu-item-details">
             {% for f in friendslist %}
-            <li class="list-item-link menu-item-link active">
-                <a href="index.html#chapter-1">Chapter 1</a>
-            </li>
+                <li class="list-item-link menu-item-link active">
+                    <a href="{{
+                        path(
+                            'profile_friend',
+                            {
+                                friendcode: f
+                            }
+                        )
+                        }}">
+                        {{ f }}
+                    </a>{# I plan on being able to view an individual feed #}
+                </li>
             {% endfor %}
         </ul>
     </details>
     <details>
         <summary>
             <span class="text-element menu-item-summary"
-                  data-page-name="your-canvas.html">
+                data-page-name="your-canvas.html">
                 My Profile <span class="line-vertical-plus">
                     -
                 </span><span class="line-horizontal-plus">-</span>
@@ -33,7 +42,10 @@
         </summary>
         <ul class="link-list menu-item-details">
             <li class="list-item-link menu-item-link active">
-                <a href="{{ path('profile_settings') }}">A bit about me</a>
+                <a href="{{ path('upload') }}">Upload a Photo</a>
+                <a href="{{ path('profile_feed') }}">My Personal Photo Feed</a>
+                <a href="{{ path('profile_settings') }}">My Profile Settings</a>
+                <a href="{{ path('app_logout') }}">LogOut</a>
             </li>
         </ul>
     </details>

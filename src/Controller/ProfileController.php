@@ -38,8 +38,10 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/profile/upload', name: 'upload')]
-    public function uploadImg(Request $request, ManagerRegistry $doctrine): Response
+    public function uploadImg(Request $request, ManagerRegistry $doctrine, FriendsFunctions $friends): Response
     {
+        $fl = $friends->getFriendsList();
+
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
 
@@ -56,20 +58,38 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/upload.html.twig', [
             'form' => $form->createView(),
+            'friendslist' => $fl,
         ]);
     }
 
     #[Route('/profile/settings', name: 'profile_settings')]
-    public function settings(): Response
+    public function settings(ManagerRegistry $doctrine, FriendsFunctions $friends): Response
     {
+        $fl = $friends->getFriendsList();
+
         return $this->render('profile/index.html.twig', [
         ]);
     }
 
     #[Route('/profile/feed', name: 'profile_feed')]
-    public function feed(): Response
+    public function feed(FriendsFunctions $friends): Response
     {
+        $fl = $friends->getFriendsList();
+
         return $this->render('profile/index.html.twig', [
+            'up' => $this->getUser()->getPosts(),
+            'friendslist' => $fl,
+        ]);
+    }
+
+    #[Route('/profile/{friendcode}', name: 'profile_friend')]
+    public function friendFeed(FriendsFunctions $friends, string $friendcode): Response
+    {
+        $fl = $friends->getFriendsList();
+
+        return $this->render('profile/index.html.twig', [
+            'up' => $friends->getUserPhotos($friendcode),
+            'friendslist' => $fl,
         ]);
     }
 }

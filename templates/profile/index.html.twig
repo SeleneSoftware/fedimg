@@ -8,13 +8,15 @@
     {% for i in up %}
         <div class="container section-content-guide">
             <h2 class="title-section" id="chapter-2">
-                Photo
+                {{ i.getTitle }}
             </h2>
+            {# I might want a description.  Not now.
             <h3 class="subtitle-section">
                 Eum fuga reprehenderit tempore quidem suscipit fugiat a
                 recusandae minima. Debitis et exercitationem. Nisi vero
                 deserunt. Expedita aut fugiat autem similique officiis.
             </h3>
+            #}
             <div class="responsive-picture picture">
                 <picture>
                     <img alt="Placeholder Picture"
