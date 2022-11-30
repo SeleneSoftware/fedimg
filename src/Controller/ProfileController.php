@@ -16,8 +16,24 @@ class ProfileController extends AbstractController
     #[Route('/profile', name: 'profile')]
     public function index(FriendsFunctions $friends): Response
     {
+        $fl = $friends->getFriendsList();
+
+        $posts = [];
+        foreach ($fl as $friend) {
+            $posts = array_merge($posts, $friends->getUserPhotos($friend));
+        }
+
+        usort($posts, function ($a, $b) {
+            if ($a->getUpdatedAt() == $b->getUpdatedAt()) {
+                return 0;
+            }
+
+            return $a->getUpdatedAt() < $b->getUpdatedAt() ? -1 : 1;
+        });
+
         return $this->render('profile/index.html.twig', [
-            'up' => $friends->getUserPhotos('bunny@fedimgdev'),
+            'up' => $posts,
+            'friendslist' => $fl,
         ]);
     }
 

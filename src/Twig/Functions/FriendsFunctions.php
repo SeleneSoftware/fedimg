@@ -23,11 +23,11 @@ class FriendsFunctions implements RuntimeExtensionInterface
         $this->settings = $doctrine->getRepository(Setting::class);
     }
 
-    public function getFriendsList(string $username = null)
+    public function getFriendsList()
     {
         $user = $this->security->getUser();
 
-        return json_decode($user->getFriends());
+        return $user->getProfile()->getFriends();
     }
 
     public function getUserPhotos(string $friendCode)
@@ -39,6 +39,7 @@ class FriendsFunctions implements RuntimeExtensionInterface
             $repo = $this->doctrine->getRepository(User::class);
             $friend = $repo->findOneByUsername($code[0]);
 
+            $pubPosts = [];
             foreach ($friend->getPosts() as $post) {
                 if ($post->isPublic()) {
                     $pubPosts[] = $post;

@@ -11,10 +11,12 @@
             <a class="link-text logo-nav-link" href="{{ path('profile') }}">
                 {{ app.user.getUsername }}<br />Profile
             </a>
-        {% endif %}
         <a class="link-text logo-nav-link" href="{{ path('feed-follow',{'usercode':userCode}) }}">
             Follow Me<br />{{ userCode }}
             </a>
+            {% else %}
+                < span class="link-text logo-nav-link">Search for me in your FedImg at {{ usercode }}</span>
+        {% endif %}
     </nav>
 {% endblock %}
 
