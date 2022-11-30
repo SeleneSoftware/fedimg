@@ -54,13 +54,14 @@ class HostOrgRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?HostOrg
-//    {
-//        return $this->createQueryBuilder('h')
-//            ->andWhere('h.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    // So I'm gunna make this search available hosts in the case we don't know the sitecode
+    public function findOneBySiteNick($value): ?HostOrg
+    {
+        return $this->createQueryBuilder('h')
+           ->andWhere('h.nick = :val')
+           ->setParameter('val', $value)
+           ->getQuery()
+           ->getOneOrNullResult()
+        ;
+    }
 }

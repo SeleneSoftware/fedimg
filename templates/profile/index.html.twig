@@ -19,11 +19,19 @@
             #}
             <div class="responsive-picture picture">
                 <picture>
+                    {% if i.getImageFile %}
                     <img alt="Placeholder Picture"
                         width="1920"
                         height="1155"
                         src="{{ vich_uploader_asset(i) }}"
                         loading="lazy" />
+                    {% else %}
+                    <img alt="Placeholder Picture"
+                        width="1920"
+                        height="1155"
+                        src="//{{ i.getImageUrl }}"
+                        loading="lazy" />
+                    {% endif %}
                 </picture>
             </div>
             <div class="rule rule-section">

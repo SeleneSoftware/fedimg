@@ -39,6 +39,8 @@ class Post
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    private ?string $imageURL = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,5 +139,17 @@ class Post
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    public function setImageURL(?string $url): self
+    {
+        $this->imageURL = $url;
+
+        return $this;
+    }
+
+    public function getImageURL(): ?string
+    {
+        return $this->imageURL;
     }
 }
