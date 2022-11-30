@@ -39,16 +39,27 @@ class ApiController extends AbstractController
             'SiteDesc' => $siteDesc->getValue(),
             'Users' => $users,
             'HostOrg' => $hosts,
+            'ImgPath' => 'images/products', // This is hard-coded for now, but soon will be pulled from configs
         ]);
 
         return $response;
     }
 
-    #[Route('/api/user/{user}', name: 'api-user')]
+    #[Route('/api/user/{username}', name: 'api-user')]
     #[Entity('User', options: ['username' => 'username'])]
-    public function user(User $user, ManagerRegistery $doctrine)
+    public function user(User $user)
     {
-        $response = new JsonResponse([]);
+        $posts = [];
+        foreach ($user->getPosts() as $post) {
+            $posts[$post->getId()] = [
+                'title' => $post->getTitle(),
+                'name' => $post->getImageName(),
+            ];
+        }
+        $response = new JsonResponse([
+            'username' => $user->getUsername(),
+            'posts' => $posts,
+        ]);
 
         return $response;
     }
