@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\HostOrg;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 /**
  * @extends ServiceEntityRepository<HostOrg>
@@ -16,8 +18,11 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class HostOrgRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    protected $client;
+
+    public function __construct(ManagerRegistry $registry, HttpClientInterface $client)
     {
+        $this->client = $client;
         parent::__construct($registry, HostOrg::class);
     }
 
@@ -54,8 +59,7 @@ class HostOrgRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-    // So I'm gunna make this search available hosts in the case we don't know the sitecode
-    public function findOneBySiteNick($value): ?HostOrg
+    public function findOneLocalBySiteNick($value): ?HostOrg
     {
         return $this->createQueryBuilder('h')
            ->andWhere('h.nick = :val')
@@ -63,5 +67,39 @@ class HostOrgRepository extends ServiceEntityRepository
            ->getQuery()
            ->getOneOrNullResult()
         ;
+    }
+
+    // So I'm gunna make this search available hosts in the case we don't know the sitecode
+    public function findOneBySiteNick($value): ?HostOrg
+    {
+        $host = $this->findOneLocalBySiteNick($value);
+        if (is_null($host)) {
+            $hosts = $this->findAll();
+            foreach ($hosts as $h) {
+                $response = $this->client->request(
+                    'GET',
+                    'https://'.$host->getUrl().'/api/hosts'
+                );
+                if (200 === $response->getStatusCode()) {
+                    $content = $response->toArray();
+                    foreach ($content as $c) {
+                        if ($value === $c['nick']) {
+                            $host = new HostOrg();
+                            $host->setName($c['name'])
+                                    ->setNick($c['nick'])
+                                    ->setUrl($c['url'])
+                            ;
+                            $this->save($host, true);
+                        }
+                    }
+                }
+            }
+        }
+
+        if (is_null($host)) {
+            throw new NotFoundHttpException('User Not Found At @'.$value, null);
+        }
+
+        return $host;
     }
 }

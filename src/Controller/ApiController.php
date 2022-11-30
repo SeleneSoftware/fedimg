@@ -72,4 +72,20 @@ class ApiController extends AbstractController
 
         return $response;
     }
+
+    #[Route('/api/hosts', name: 'api-hosts')]
+    public function listHosts(ManagerRegistry $doctrine): Response
+    {
+        $repo = $doctrine->getRepository(HostOrg::class);
+        $hosts = $repo->findAll();
+        foreach ($hosts as $h) {
+            $response[] = [
+                'name' => $h->getName(),
+                'nick' => $h->getNick(),
+                'url' => $h->getUrl(),
+            ];
+        }
+
+        return new JsonResponse($response);
+    }
 }
