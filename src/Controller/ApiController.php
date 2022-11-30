@@ -54,6 +54,7 @@ class ApiController extends AbstractController
             $posts[$post->getId()] = [
                 'title' => $post->getTitle(),
                 'name' => $post->getImageName(),
+                'updated' => $post->getUpdatedAt(),
             ];
         }
         $response = new JsonResponse([
