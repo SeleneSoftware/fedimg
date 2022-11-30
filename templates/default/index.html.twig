@@ -1,20 +1,49 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.' ~ theme ~ '.html.twig' %}
 
-{% block title %}Hello DefaultController!{% endblock %}
+{# This is built for the Kunst theme, but I'm gunna fix it. Later. #}
+{% block navbar %}
+    <nav class="container navbar">
+        {% if app.user %}
+            <a class="link-text logo-nav-link" href="{{ path('profile') }}">
+                {{ app.user.getUsername }}<br />Profile
+            </a>
+            {% else %}
+            <a class="link-text logo-nav-link" href="{{ path('app_login') }}">
+                Login
+            </a>
+            <a class="link-text logo-nav-link" href="{{ path('app_register') }}">
+                Register
+            </a>
+        {% endif %}
+    </nav>
+{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/jasonmarshall/code/html/fedimg/src/Controller/DefaultController.php'|file_link(0) }}">src/Controller/DefaultController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/jasonmarshall/code/html/fedimg/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>
-    </ul>
-</div>
+{# This is built for the Kunst theme, but I'm gunna fix it. Later. #}
+{% block feed %}
+    <section class="container projects-section" id="projects">
+        {% for row in feed|batch(2, null) %}
+            <div class="container sd-two-cols two-column-pictures">
+                {% for pic in row %}
+                    {% if pic %}
+                        {% if pic.isPublic %}
+                            <div class="container container-center-picture">
+                                <div class="responsive-picture picture-project">
+                                    <picture>
+                                        <img alt="Placeholder Picture"
+                                            width="1920"
+                                            height="1280"
+                                            src="{{ vich_uploader_asset(pic) }}"
+                                            loading="lazy" />
+                                    </picture>
+                                </div>
+                                <h3 class="heading-3">
+                                    {{ pic.getTitle }}
+                                </h3>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </section>
 {% endblock %}
