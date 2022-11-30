@@ -39,7 +39,7 @@ class ApiController extends AbstractController
             'SiteDesc' => $siteDesc->getValue(),
             'Users' => $users,
             'HostOrg' => $hosts,
-            'ImgPath' => 'images/products', // This is hard-coded for now, but soon will be pulled from configs
+            'ImgPath' => '/images/products/', // This is hard-coded for now, but soon will be pulled from configs
         ]);
 
         return $response;
