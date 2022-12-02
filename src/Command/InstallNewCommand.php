@@ -2,7 +2,10 @@
 
 namespace App\Command;
 
+use App\Entity\Profile;
 use App\Entity\Setting;
+use App\Entity\User;
+use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -14,6 +17,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Path;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[AsCommand(
     name: 'install:new',
@@ -23,8 +27,14 @@ class InstallNewCommand extends Command
 {
     protected $doctrine;
 
-    public function __construct(ManagerRegistry $doctrine)
+    protected $user;
+
+    protected $hasher;
+
+    public function __construct(ManagerRegistry $doctrine, UserRepository $user, UserPasswordHasherInterface $userPasswordHasher)
     {
+        $this->hasher = $userPasswordHasher;
+        $this->user = $user;
         $this->doctrine = $doctrine;
         parent::__construct();
     }
@@ -57,7 +67,7 @@ class InstallNewCommand extends Command
         $migrate = $this->runDoctrine($output);
 
         $this->siteOptions($helper);
-
+        $this->createUser($helper);
         $this->emailSettings($email);
 
         $helper->success('Your new FedImg instance is now installed.  Post Away!');
@@ -65,7 +75,28 @@ class InstallNewCommand extends Command
         return Command::SUCCESS;
     }
 
-    private function databaseOptions($helper): array
+    private function createUser(SymfonyStyle $helper)
+    {
+        $ue = $helper->ask('Admin Email Address', 'admin@example.com');
+        $un = $helper->ask('Admin Username', 'admin');
+        $up = $helper->ask('Admin Password', 'PassWord123!');
+
+        $usr = new User();
+        $usr->setEmail($ue)
+            ->setUsername($un)
+            ->addRole('ROLE_ADMIN')
+            ->setProfile(new Profile())
+            ->setPassword($this->hasher->hashPassword(
+                $usr,
+                $up
+            )
+            )
+        ;
+
+        $this->user->save($usr, true);
+    }
+
+    private function databaseOptions(SymfonyStyle $helper): array
     {
         $db['Host'] = $helper->ask('Enter Database Host', '127.0.0.1');
         // $db['Host'] = $helper->ask($input, $output, $question);
