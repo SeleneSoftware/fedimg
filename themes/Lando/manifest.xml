@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<coffeecup_theme_manifest>
+  <description>
+    <display_name>Lando</display_name>
+    <version>1.0</version>
+    <pub_date>09-16-2021</pub_date>
+    <creator>CoffeeCup Software, Inc.</creator>
+  </description>
+  <target_application>
+    <id>1</id>
+    <name>CoffeeCup HTML Editor</name>
+    <minVersion>2010</minVersion>
+    <maxVersion>2010</maxVersion>
+  </target_application>
+</coffeecup_theme_manifest>

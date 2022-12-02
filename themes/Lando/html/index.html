@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="generator" content="RSD 5.0.3490">
+  <title>Index</title>
+  <link rel="stylesheet" href="css/vanillacss.min.css">
+  <link rel="stylesheet" href="css/wireframe-theme.min.css">
+  <script>document.createElement( "picture" );</script>
+  <script class="picturefill" async="async" src="js/picturefill.min.js"></script>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,b%7CSpace+Grotesk:300,400,500,600">
+<style>::selection { background-color: #1c1c1c; color: white }</style>
+  <style>
+    input {
+      display: none;
+    }
+    
+    .open {
+      background-color: #1c1c1c;
+      width: 24px;
+      height: 4px;
+      display: block;
+      border-radius: 2px;
+      cursor: pointer;
+      position: relative;
+      top: 8px;
+    }
+    
+    .open:before {
+      content: "";
+      background-color: #1c1c1c;
+      width: 24px;
+      height: 4px;
+      display: block;
+      border-radius: 2px;
+      position: relative;
+      top: -8px;
+      transform: rotate(0deg);
+      transition: all 0.3s ease;
+    }
+    
+    .open:after {
+      content: "";
+      background-color: #1c1c1c;
+      width: 24px;
+      height: 4px;
+      display: block;
+      border-radius: 2px;
+      position: relative;
+      top: 4px;
+      transform: rotate(0deg);
+      transition: all 0.3s ease;
+    }
+    
+    .menuOpen {
+      width: 24px;
+      height: 20px;
+      display: block;
+      padding: 15px;
+      cursor: pointer;
+      float: right;
+    }
+    
+    .menuOpen:hover .open:before {
+      top: -9px;
+    }
+    
+    .menuOpen:hover .open:after {
+      top: 5px;
+    }
+    
+    .menu {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      background: #000000;
+    }
+    
+    .menu label {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      background-size: 100%;
+      cursor: pointer;
+    }
+    
+    .menu .menuContent {
+      position: relative;
+      top: 50%;
+      font-size: 36px;
+      text-align: center;
+      padding-bottom: 20px;
+      margin-top: -170px;
+    }
+    
+    .menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto;
+    }
+    
+    .menu ul li a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      transition: color 0.2s;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 10px 0;
+    }
+    
+    .menu ul li a:hover {
+      color: black;
+    }
+    
+    .menu ul li:hover {
+      background: white;
+    }
+    
+    .menuEffects {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s, visibility 0.5s;
+    }
+    
+    .menuEffects ul {
+      transform: translateY(0%);
+      transition: all 0.5s;
+    }
+    
+    #menuToggle:checked ~ .menuEffects {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.5s;
+    }
+    
+    #menuToggle:checked ~ .menuEffects ul {
+      opacity: 1;
+    }
+    
+    #menuToggle:checked ~ .menuOpen .open {
+      background-color: white;
+    }
+    
+    #menuToggle:checked ~ .menuOpen .open:before {
+      content: "";
+      background-color: white;
+      transform: rotate(45deg);
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 1;
+    }
+    
+    #menuToggle:checked ~ .menuOpen .open:after {
+      content: "";
+      background-color: white;
+      transform: rotate(-45deg);
+      position: relative;
+      top: 0;
+      right: 0;
+      z-index: 1;
+    }
+    
+    #menuToggle:not(:checked) ~ .menuEffects ul {
+      transform: translateY(-5%);
+    }
+    
+  </style>
+  <style>
+    /* Setting fade transition and default settings */
+    body {
+      color: #000;
+      background-color: #f4f4f4;
+      transition: background-color 1s ease;
+    }
+    
+    /* Panel styles */
+    .panel {
+      /* min height incase content is higher than window height */
+      min-height: 100vh;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      font-family: sans-serif;
+      /* outline: 10px solid hotpink; */
+      /* turn above on to see the edge of panels */
+    }
+    
+    /* Colours */
+    .color-white {
+      background-color: white;
+    }
+    .color-brown {
+      background-color: #d4beab;
+    }
+    .color-blue {
+      background-color: #5d7bf0;
+    }
+    .color-yellow {
+      background-color: #f4bd4c;
+     }
+     
+  </style>
+</head>
+
+<body>
+  <div class="html-element html-element-menu"><div id="menuArea">
+  <input type="checkbox" id="menuToggle"></input>
+
+<label for="menuToggle" class="menuOpen">
+  <div class="open"></div>
+</label>
+
+<div class="menu menuEffects">
+  <label for="menuToggle"></label>
+  <div class="menuContent">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Projects</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </div>
+</div>
+</div></div>
+  <div class="html-element html-element-colors-background"></div>
+  <div class="container panel" data-color="white">
+    <div class="container hero-content-wrapper">
+      <h1 class="hero-heading"><span class="name-highlight">Julia Lando&nbsp;<br></span>Visual Designer, Art Director and Illustrator based in Barcelona /&nbsp; Spain</h1>
+      <a class="link-text arrow-link" href="#projects" data-scroll="">↓</a>
+    </div><a class="link-button button-link-1" role="button" href="#instructions" data-scroll="">?</a>
+  </div>
+  <div class="container panel container-padding-top" data-color="brown" id="projects">
+    <div class="container container-1">
+      <h2 class="title-heading">Latest Projects</h2>
+    </div>
+    <div class="container neutral-three-columns-article">
+      <div class="container neutral-article-wrapper" data-outofview="true">
+        <div class="container container-picture-wrapp">
+          <div class="responsive-picture project-index-picture">
+            <picture>
+              <img alt="Placeholder Picture" width="1920" height="2880" src="./images/pawel-czerwinski-NTYYL9Eb9y8-unsplash.jpg">
+            </picture>
+          </div>
+        </div>
+        <h4 class="medium-headline">Project 01</h4>
+        <p class="paragraph paragraph-text">Paragraph description. Show a brief idea about the content the user will find inside.</p>
+        <a class="link-text text-link" href="#">Visit project &gt;</a>
+      </div>
+      <div class="container neutral-article-wrapper" data-outofview="true">
+        <div class="container container-picture-wrapp">
+          <div class="responsive-picture project-index-picture">
+            <picture>
+              <img alt="Placeholder Picture" width="1920" height="2880" src="./images/pawel-czerwinski-oBpRHt28qx4-unsplash.jpg">
+            </picture>
+          </div>
+        </div>
+        <h4 class="medium-headline">PROJECT 02</h4>
+        <p class="paragraph paragraph-text">Paragraph description. Show a brief idea about the content the user will find inside.</p>
+        <a class="link-text text-link" href="#">Visit project &gt;</a>
+      </div>
+      <div class="container neutral-article-wrapper" data-outofview="true">
+        <div class="container container-picture-wrapp">
+          <div class="responsive-picture project-index-picture">
+            <picture>
+              <img alt="Placeholder Picture" width="1920" height="2880" src="./images/pawel-czerwinski-nJX3ceE4zuU-unsplash.jpg">
+            </picture>
+          </div>
+        </div>
+        <h4 class="medium-headline">PROJECT 03</h4>
+        <p class="paragraph paragraph-text">Paragraph description. Show a brief idea about the content the user will find inside.</p>
+        <a class="link-text text-link" href="#">Visit project &gt;</a>
+      </div>
+      <div class="container neutral-article-wrapper" id="container-1-copy-1" data-outofview="true">
+        <div class="container container-picture-wrapp">
+          <div class="responsive-picture project-index-picture">
+            <picture>
+              <img alt="Placeholder Picture" width="1920" height="2880" src="./images/pawel-czerwinski-9QWYJ_RPpTs-unsplash.jpg">
+            </picture>
+          </div>
+        </div>
+        <h4 class="medium-headline">PROJECT 04</h4>
+        <p class="paragraph paragraph-text">Paragraph description. Show a brief idea about the content the user will find inside.</p>
+        <a class="link-text text-link" href="#">Visit project &gt;</a>
+      </div>
+      <div class="container neutral-article-wrapper" id="container-1" data-outofview="true">
+        <div class="container container-picture-wrapp">
+          <div class="responsive-picture project-index-picture">
+            <picture>
+              <img alt="Placeholder Picture" width="1920" height="2880" src="./images/pawel-czerwinski-SOHqP5gmvFU-unsplash.jpg">
+            </picture>
+          </div>
+        </div>
+        <h4 class="medium-headline">PROJECT 05</h4>
+        <p class="paragraph paragraph-text">Paragraph description. Show a brief idea about the content the user will find inside.</p>
+        <a class="link-text text-link" href="#">Visit project &gt;</a>
+      </div>
+      <div class="container neutral-article-wrapper" id="container-1-copy-2" data-outofview="true">
+        <div class="container container-picture-wrapp">
+          <div class="responsive-picture project-index-picture">
+            <picture>
+              <img alt="Placeholder Picture" width="1920" height="2880" src="./images/pawel-czerwinski-6uY0KZo2zOE-unsplash.jpg">
+            </picture>
+          </div>
+        </div>
+        <h4 class="medium-headline">PROJECT 06</h4>
+        <p class="paragraph paragraph-text">Paragraph description. Show a brief idea about the content the user will find inside.</p>
+        <a class="link-text text-link" href="#">Visit project &gt;</a>
+      </div>
+    </div>
+  </div>
+  <div class="container panel" data-color="blue">
+    <h2 class="video-heading">Love creativity</h2>
+    <video poster="https://cdn.coffeecupcloud.com/appresources/v1/common/video_poster_default.png" autoplay="" loop="loop" muted="" class="html-video-1" controls="" data-outofview="true">
+      <source src="./images/videos/video.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="container panel" data-color="yellow">
+    <h2 class="description-heading"><span class="heading-text-1">Julia Lando</span> / Visual Designer, Art Director and Illustrator based in Barcelona –– Spain. Over 10 years experience in creative projects, working for international clients.<br><br>I like to describe myself as a <br>hands-on designer and art director. Sometimes, work on personal and commercial illustration projects.<br><br>Currently working at Filma.<br><br>For more information say hello at <a title="" href="" class="heading-text-2">Julando@gmail.com</a><br></h2>
+  </div>
+  <div class="container container-intructions" id="instructions">
+    <div class="container content-wrapper-intructions">
+      <h2 class="title-heading">Instructions</h2>
+      <p class="paragraph paragraph-instructions">This project contains two HTML Elements. One is used for the special navigation menu. While the second HTML Element is used to make the cool,&nbsp; background color change effect as you scroll down the page.<br><br>To edit the navigation menu, you’ll need to select it from the <span class="highlight"><strong>Inspector</strong> </span><span class="highlight">panel &gt; Elements Tree &gt; and select the HTML Element (.html-element-menu).</span> Once clicked, go to the <span class="highlight">Element tab</span>. Here you may change the menu texts within the HTML markup.&nbsp;To configure the link destinations,&nbsp;place your menu URLs in the <span class="highlight">Href section.</span>&nbsp;You may change the CSS colors and styles in the <span class="highlight">Head Code</span> <span class="highlight">for this Element</span> dialog box.<br><br>To change the scrollable background colors, or add new sections with various colors, go to the <span class="highlight">Inspector </span><span class="highlight">panel &gt; Elements Tree &gt; and select the HTML Element (.html-element-colors-background).</span> With the element selected, go to the Element pane and open the <span class="highlight">Enter your Code for this Element</span> dialog. You will see there is a colors section in the code, where there are several colors configured. Simply change out the set color by modifying the hexadecimal colors (<code>#1c1c1c</code>). Plus, within the canvas container, it has to contain the panel class, and the ID, for the name of the color used. Finally, having selected the container with the panel class, we introduce a custom attribute, with the name <code>data-color</code>, and the value with the color used (example:&nbsp;<code>brown</code>). And that's it!</p>
+    </div>
+  </div>
+  <footer class="container container-footer-section">
+    <div class="container footer-3-columns">
+      <div class="container container-content-footer">
+        <div class="rule footer-rule">
+          <hr>
+        </div>
+        <h4 class="title-footer-newsletter">Lando</h4>
+        <p class="paragraph parahraph-footer">Visual Designer, Art Director and Illustrator based in Barcelona / Spain</p>
+      </div>
+      <div class="container container-content-footer">
+        <div class="rule footer-rule">
+          <hr>
+        </div>
+        <a class="link-text footer-link" href="#">Instagram</a>
+        <a class="link-text footer-link" href="#">Facebook</a>
+        <a class="link-text footer-link" href="#">Call</a>
+        <a class="link-text footer-link" href="#">Email</a>
+      </div>
+      <div class="container container-content-footer">
+        <div class="rule footer-rule">
+          <hr>
+        </div>
+        <a class="link-text footer-link" href="https://www.coffeecup.com/designer/" title="Site Designer">Made in <span class="bold">CoffeeCup Site Designer</span></a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/outofview.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15/dist/smooth-scroll.polyfills.min.js"></script>
+
+<script>
+  var scroll = new SmoothScroll('a[href*="#"][data-scroll]', {
+	speed: 250
+  });
+</script>
+  <script>
+    $(window).scroll(function() {
+      
+      // Selectors
+      var $window = $(window),
+          $body = $('body'),
+          $panel = $('.panel');
+      
+      // Change 33% earlier than scroll position so colour is there when you arrive.
+      var scroll = $window.scrollTop() + ($window.height() / 3);
+     
+      $panel.each(function () {
+        var $this = $(this);
+        
+        // If position is within range of this panel.
+        // So position of (position of top of div <= scroll position) && (position of bottom of div > scroll position).
+        // Remember we set the scroll to 33% earlier in scroll var.
+        if ($this.position().top <= scroll && $this.position().top + $this.height() > scroll) {
+              
+          // Remove all classes on body with color-
+          $body.removeClass(function (index, css) {
+            return (css.match (/(^|\s)color-\S+/g) || []).join(' ');
+          });
+           
+          // Add class of currently active div
+          $body.addClass('color-' + $(this).data('color'));
+        }
+      });    
+      
+    }).scroll();
+  </script>
+</body>
+
+</html>

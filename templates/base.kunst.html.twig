@@ -20,27 +20,20 @@
     </head>
     <body>
 
-        {% block navbar %}
-        <nav class="container navbar">
-            {% if app.user %}
-                <a class="link-text logo-nav-link" href="{{ path('feed', {'username': app.user.getUsername}) }}">{{ app.user.getUsername }}</a><br><a class="link-text logo-nav-link" href="{{ path('profile') }}">Profile</a>
-            {% endif %}
-            <div class="container navigation-links"><a class="glyph mobile-nav-button close-button-cross" href="#"><i class="coffeecup-icons-cross2"></i></a>
-                <a class="link-text navlink work-link-mobile-only" href="index.html#projects" onclick="location.reload();">Contact</a>
-                <a class="link-text navlink work-link-mobile-only" href="index.html#projects" onclick="location.reload();">Instagram</a>
-                <a class="link-text navlink work-link-desktop-only" href="index.html#projects" data-scroll="">Contact</a>
-                <a class="link-text navlink work-link-desktop-only" href="index.html#projects" data-scroll="">Instagram</a>
-            </div>
-            <div class="html-element navigation-code"><script>
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        $('.mobile-nav-button').click(function(e){
-                            $('.navigation-links').toggleClass('show-menu');
-                            $('body').css('overflow', $('.navigation-links').hasClass('show-menu') ? 'hidden' : 'auto');
-                        });
-                    });
-            </script></div><a class="glyph mobile-nav-button" href="#!"><i class="coffeecup-icons-menu7"></i></a>
-        </nav>
-        {% endblock %}
+{% block navbar %}
+    <nav class="container navbar">
+        {% if app.user %}
+            <a class="link-text logo-nav-link" href="{{ path('profile') }}">
+                {{ app.user.getUsername }}<br />Profile
+            </a>
+        <a class="link-text logo-nav-link" href="{{ path('feed-follow',{'usercode':userCode}) }}">
+            Follow Me<br />{{ userCode }}
+            </a>
+            {% else %}
+                <span class="link-text logo-nav-link">Search for me in your FedImg at {{ userCode }}</span>
+        {% endif %}
+    </nav>
+{% endblock %}
 
         {% block hero %}
         <section class="container hero-section" style="background-image: linear-gradient(25deg, rgba(26, 26, 26, 1) 0%, rgba(0, 0, 0, 0) 50%), url('https://picsum.photos/1280/865')">
@@ -50,75 +43,34 @@
         </section>
         {% endblock %}
 
-        {% block feed %}
-        <section class="container projects-section" id="projects">
-            <div class="container container-projects-title">
-                <h2 class="heading-2">Last projects</h2>
-            </div>
+{% block feed %}
+    <section class="container projects-section" id="projects">
+        {% for row in feed|batch(2, null) %}
             <div class="container sd-two-cols two-column-pictures">
-                <div class="container container-center-picture">
-                    <div class="responsive-picture picture-project">
-                        <picture>
-                            <img alt="Placeholder Picture" width="1920" height="1280" src="{{ asset('/images/pexels-circling-sea-5625832.jpg') }}" loading="lazy">
-                        </picture>
-                    </div>
-                    <h3 class="heading-3">Girl &amp; Wolf – 2020</h3>
-                </div>
-                <div class="container container-center-picture">
-                    <div class="responsive-picture picture-project">
-                        <picture>
-                            <img alt="Placeholder Picture" width="1280" height="1919" src="./images/pexels-aleksandar-pasaric-6560708.jpg" loading="lazy">
-                        </picture>
-                    </div>
-                    <h3 class="heading-3">Skyfall – 2020</h3>
-                </div>
+                {% for pic in row %}
+                    {% if pic %}
+                        {% if pic.isPublic %}
+                            <div class="container container-center-picture">
+                                <div class="responsive-picture picture-project">
+                                    <picture>
+                                        <img alt="{{pic.getTitle}}"
+                                            width="1920"
+                                            height="1280"
+                                            src="{{ vich_uploader_asset(pic) }}"
+                                            loading="lazy" />
+                                    </picture>
+                                </div>
+                                <h3 class="heading-3">
+                                    {{ pic.getTitle }}
+                                </h3>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
             </div>
-            <div class="container sd-two-cols two-column-pictures">
-                <div class="container container-center-picture">
-                    <div class="responsive-picture picture-project">
-                        <picture>
-                            <img alt="Placeholder Picture" width="1920" height="2880" src="./images/inside-weather-Uxqlfigh6oE-unsplash.jpg" loading="lazy">
-                        </picture>
-                    </div>
-                    <h3 class="heading-3">Ibiza – 2019</h3>
-                </div>
-                <div class="container container-center-picture">
-                    <div class="responsive-picture picture-project">
-                        <picture>
-                            <img alt="Placeholder Picture" width="1280" height="1920" src="./images/pexels-monstera-6373480.jpg" loading="lazy">
-                        </picture>
-                    </div>
-                    <h3 class="heading-3">Stockholm – 2019</h3>
-                </div>
-            </div>
-            <div class="container sd-three-cols three-column-pictures">
-                <div class="container container-center-picture">
-                    <div class="responsive-picture picture-project">
-                        <picture>
-                            <img alt="Placeholder Picture" width="1280" height="1707" src="./images/pexels-maxim-kovalev-8647264.jpg" loading="lazy">
-                        </picture>
-                    </div>
-                    <h3 class="heading-3">The Void – 2019</h3>
-                </div>
-                <div class="container container-center-picture">
-                    <div class="responsive-picture picture-project">
-                        <picture>
-                            <img alt="Placeholder Picture" width="1280" height="1807" src="./images/pexels-rachel-claire-4577793.jpg" loading="lazy">
-                        </picture>
-                    </div>
-                    <h3 class="heading-3">Nomads – 2019</h3>
-                </div>
-                <div class="container container-center-picture">
-                    <div class="responsive-picture picture-project">
-                        <picture>
-                            <img alt="Placeholder Picture" width="1280" height="1919" src="./images/pexels-ave-calvar-martinez-4092124.jpg" loading="lazy">
-                        </picture>
-                    </div>
-                    <h3 class="heading-3">Cold Waters – 2018</h3>
-                </div>
-            </div>
-        </section>
-        {% endblock %}
+        {% endfor %}
+    </section>
+{% endblock %}
 
         {# Why am I keeping this here?  Someday, I might want videos.
         <section class="container video-section">
@@ -132,32 +84,12 @@
             </div>
         </section> #}
 
-        {% block feedTwoPic %}
-        <div class="container sd-two-cols two-column-pictures">
-            <div class="container container-center-picture">
-                <div class="responsive-picture picture-project">
-                    <picture>
-                        <img alt="Placeholder Picture" width="1280" height="853" src="./images/pexels-mentatdgt-987230.jpg" loading="lazy">
-                    </picture>
-                </div>
-                <h3 class="heading-3">Girl &amp; Wolf – 2020</h3>
-            </div>
-            <div class="container container-center-picture">
-                <div class="responsive-picture picture-project">
-                    <picture>
-                        <img alt="Placeholder Picture" width="1280" height="853" src="./images/pexels-adrien-olichon-2387793.jpg" loading="lazy">
-                    </picture>
-                </div>
-                <h3 class="heading-3">Volcanic Lands – 2016</h3>
-            </div>
-        </div>
-        {% endblock %}
 
         {% block footer %}
         <footer class="container footer">
             <div class="container footer-3-columns">
                 <div class="container description-logos-footer">
-                    <h4 class="headline-footer">Footer paragraph desciption. I'm Emily Kunst, a photographer &amp; filmmaker based in Berlin.</h4>
+                    <h4 class="headline-footer">FedImg For a Person</h4>
                 </div>
                 <div class="container container-links-footer-wrapper-1">
                     <a class="link-text link-footer" href="#">Contact</a>
