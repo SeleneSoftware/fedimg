@@ -45,6 +45,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $username = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $locked = null;
+
     public function __construct()
     {
         $this->posts = new ArrayCollection();
@@ -94,6 +97,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->roles[] = $role;
 
         return $this;
+    }
+
+    public function removeRole($role): self
+    {
+        $this->roles = array_diff($this->roles, [$role]);
+
+        return $this;
+    }
+
+    public function hasRole($role): bool
+    {
+        return in_array($role, $this->roles);
     }
 
     public function setRoles(array $roles): self
@@ -189,6 +204,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    public function isLocked(): ?bool
+    {
+        return $this->locked;
+    }
+
+    public function setLocked(?bool $locked): self
+    {
+        $this->locked = $locked;
 
         return $this;
     }

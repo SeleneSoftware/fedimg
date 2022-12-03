@@ -49,4 +49,23 @@
             </li>
         </ul>
     </details>
-</div>
+
+    {% if is_granted('ROLE_ADMIN') %}
+    <details>
+        <summary>
+            <span class="text-element menu-item-summary"
+                data-page-name="your-canvas.html">
+                Admin <span class="line-vertical-plus">
+                    -
+                </span><span class="line-horizontal-plus">-</span>
+            </span>
+        </summary>
+        <ul class="link-list menu-item-details">
+            <li class="list-item-link menu-item-link active">
+                <a href="{{ path('app_admin') }}">Site Settings</a>
+                <a href="{{ path('app_admin_user') }}">User Settings</a>
+            </li>
+        </ul>
+    </details>
+        {% endif %}
+    </div>

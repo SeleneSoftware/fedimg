@@ -1,0 +1,22 @@
+{% extends 'base.profile.html.twig' %}
+
+{% block profilefeed %}
+    <h1 class="hero-heading">
+        FedImg Settings
+    </h1>
+
+    <div class="container section-content-guide">
+        {% for u in users %}
+            <div class="container section-content-guide">
+                <a href="{{ path('app_admin_user_feed', {'user': u.username }) }}" class="paragraph body-paragraph-tutorial">{{ u.username }}</a>
+                <div class="rule rule-section">
+                    <hr />
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block navigation %}
+    {{ include('profile/includes/sidebar.html.twig') }}
+{% endblock %}

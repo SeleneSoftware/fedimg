@@ -6,6 +6,26 @@
     </h1>
 
     <div class="container section-content-guide">
-        {{ form(form) }}
+        {{ form_start(form) }}
+
+        {% for f in form %}
+            {% if f.vars.name != '_token' %}
+                <span class="paragraph body-paragraph-tutorial">
+                    {{ form_widget(f) }}
+                </span>
+                <span class="paragraph body-paragraph-tutorial">
+                    {{ form_label(f) }}
+                </span>
+                <div class="rule rule-section">
+                    <hr />
+                </div>
+                {% endif %}
+        {% endfor %}
+
+        {{ form_end(form) }}
     </div>
+{% endblock %}
+
+{% block navigation %}
+    {{ include('profile/includes/sidebar.html.twig') }}
 {% endblock %}
