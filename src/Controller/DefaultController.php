@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-    #[Route('/', name: 'default')]
+    #[Route('/', name: 'default', options: ['sitemap' => true])]
     public function index(UserRepository $users): Response
     {
         $u = $users->findAll();

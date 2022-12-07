@@ -1,3 +1,6 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+# config/routes/presta_sitemap.yaml
+presta_sitemap:
+    resource: "@PrestaSitemapBundle/config/routing.yml"
