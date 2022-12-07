@@ -16,6 +16,7 @@ class PostType extends AbstractType
         $builder
             ->add('title')
             ->add('public')
+            ->add('nsfw')
             ->add('imageFile', VichImageType::class)
             ->add('save', SubmitType::class, ['label' => 'Save Settings'])
         ;

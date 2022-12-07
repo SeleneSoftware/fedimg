@@ -19,3 +19,6 @@ yarn-error.log
 .php-cs-fixer.cache
 /public/uploads
 /public/images
+
+## I tend to test new database formation
+*.sql

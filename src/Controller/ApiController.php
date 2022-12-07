@@ -51,11 +51,14 @@ class ApiController extends AbstractController
     {
         $posts = [];
         foreach ($user->getPosts() as $post) {
-            $posts[$post->getId()] = [
-                'title' => $post->getTitle(),
-                'name' => $post->getImageName(),
-                'updated' => $post->getUpdatedAt(),
-            ];
+            if ($post->isPublic()) {
+                $posts[$post->getId()] = [
+                    'title' => $post->getTitle(),
+                    'name' => $post->getImageName(),
+                    'updated' => $post->getUpdatedAt(),
+                    'nsfw' => $post->isNsfw(),
+                ];
+            }
         }
         $response = new JsonResponse([
             'username' => $user->getUsername(),

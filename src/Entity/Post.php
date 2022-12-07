@@ -23,7 +23,7 @@ class Post
     #[ORM\JoinColumn(nullable: false)]
     private ?User $owner = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: false)]
     private ?bool $public = null;
 
     #[ORM\Column(length: 255)]
@@ -40,6 +40,9 @@ class Post
     private ?\DateTimeImmutable $updatedAt = null;
 
     private ?string $imageURL = null;
+
+    #[ORM\Column]
+    private ?bool $nsfw = null;
 
     public function getId(): ?int
     {
@@ -151,5 +154,17 @@ class Post
     public function getImageURL(): ?string
     {
         return $this->imageURL;
+    }
+
+    public function isNsfw(): ?bool
+    {
+        return $this->nsfw;
+    }
+
+    public function setNsfw(bool $nsfw): self
+    {
+        $this->nsfw = $nsfw;
+
+        return $this;
     }
 }

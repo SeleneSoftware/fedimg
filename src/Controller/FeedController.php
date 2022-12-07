@@ -30,6 +30,7 @@ class FeedController extends AbstractController
     #[Route('/feed/follow/{usercode}', name: 'feed-follow')]
     public function follow(ManagerRegistry $doctrine, string $usercode): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $profile = $this->getUser()->getProfile();
         $profile->addFriend($usercode);
 
