@@ -69,7 +69,7 @@
                                             </picture>
                                         </div>
                                         <h3 class="heading-3">
-                                            {{ pic.getTitle }}
+                                            {{ pic.getTitle }} - <a href="{{ path('feed-follow', {'usercode': friendcode(pic)}) }}">{{ friendcode(pic) }}</a>
                                         </h3>
                                     </div>
                                 {% endif %}

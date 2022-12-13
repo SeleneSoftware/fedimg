@@ -47,8 +47,9 @@ class ApiController extends AbstractController
 
     #[Route('/api/user/{username}', name: 'api-user')]
     #[Entity('User', options: ['username' => 'username'])]
-    public function user(User $user)
+    public function user(User $user, ManagerRegistry $doctrine)
     {
+        $repo = $doctrine->getRepository(Setting::class);
         $posts = [];
         foreach ($user->getPosts() as $post) {
             if ($post->isPublic()) {
@@ -62,6 +63,7 @@ class ApiController extends AbstractController
         }
         $response = new JsonResponse([
             'username' => $user->getUsername(),
+            'sitecode' => $repo->findOneByName('sitenick'),
             'posts' => $posts,
         ]);
 

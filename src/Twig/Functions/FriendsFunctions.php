@@ -48,7 +48,7 @@ class FriendsFunctions implements RuntimeExtensionInterface
             $pubPosts = [];
             foreach ($friend->getPosts() as $post) {
                 if ($post->isPublic()) {
-                    $pubPosts[] = $post;
+                    $pubPosts[] = $post->setUsercode($friendCode);
                 }
             }
 
@@ -86,7 +86,8 @@ class FriendsFunctions implements RuntimeExtensionInterface
             $p->setTitle($post['title'])
               ->setImageUrl($host->getUrl().$imagePath.$post['name'])
               ->setUpdatedAt(new \DateTimeImmutable($post['updated']['date'], new \DateTimeZone($post['updated']['timezone'])))
-          ->setPublic(true)
+              ->setPublic(true)
+              ->setUsercode($friendCode)
             ;
             $posts[] = $p;
         }
@@ -100,7 +101,7 @@ class FriendsFunctions implements RuntimeExtensionInterface
         $hosts = $repo->findAll();
         shuffle($hosts);
         $ret = [];
-        // $slice = array_slice($all, 0, 10);
+
         foreach (array_slice($hosts, 0, 10) as $h) {
             $response = $this->client->request(
                 'GET',
@@ -122,5 +123,18 @@ class FriendsFunctions implements RuntimeExtensionInterface
         }
 
         return $ret;
+    }
+
+    public function getFriendCode($post): string
+    {
+        if ($post->getUsercode()) {
+            return $post->getUsercode();
+        }
+        $owner = $post->getOwner()->getUsername();
+        $siteCode = $this->settings->findOneByName('siteNick')->getValue();
+
+        $post->setUsercode($owner.'@'.$siteCode);
+
+        return $post->getUsercode();
     }
 }

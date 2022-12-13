@@ -44,6 +44,8 @@ class Post
     #[ORM\Column]
     private ?bool $nsfw = null;
 
+    private $userCode;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -166,5 +168,17 @@ class Post
         $this->nsfw = $nsfw;
 
         return $this;
+    }
+
+    public function setUsercode(string $code): self
+    {
+        $this->userCode = $code;
+
+        return $this;
+    }
+
+    public function getUsercode(): ?string
+    {
+        return $this->userCode;
     }
 }

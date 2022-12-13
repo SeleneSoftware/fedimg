@@ -2,7 +2,7 @@
 
 namespace App\Twig\Extension;
 
-use App\Twig\Function\FriendsFunctions;
+use App\Twig\Functions\FriendsFunctions;
 use App\Twig\Runtime\AppExtensionRuntime;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -10,6 +10,13 @@ use Twig\TwigFunction;
 
 class AppExtension extends AbstractExtension
 {
+    protected $friends;
+
+    public function __construct(FriendsFunctions $friends)
+    {
+        $this->friends = $friends;
+    }
+
     public function getFilters(): array
     {
         return [
@@ -23,8 +30,9 @@ class AppExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('friendslist', [FriendsFunctions::class, 'getFrindsList']),
+            new TwigFunction('friendslist', [FriendsFunctions::class, 'getFriendsList']),
             new TwigFunction('userphotos', [FriendsFunctions::class, 'getUserPhotos']),
+            new TwigFunction('friendcode', [$this->friends, 'getFriendCode']),
         ];
     }
 }
