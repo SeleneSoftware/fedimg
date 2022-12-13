@@ -20,57 +20,65 @@
     </head>
     <body>
 
-{% block navbar %}
-    <nav class="container navbar">
-        {% if app.user %}
-            <a class="link-text logo-nav-link" href="{{ path('profile') }}">
-                {{ app.user.getUsername }}<br />Profile
-            </a>
-        <a class="link-text logo-nav-link" href="{{ path('feed-follow',{'usercode':userCode}) }}">
-            Follow Me<br />{{ userCode }}
-            </a>
-            {% else %}
-                <span class="link-text logo-nav-link">Search for me in your FedImg at {{ userCode }}</span>
-        {% endif %}
-    </nav>
-{% endblock %}
-
-        {% block hero %}
-        <section class="container hero-section" style="background-image: linear-gradient(25deg, rgba(26, 26, 26, 1) 0%, rgba(0, 0, 0, 0) 50%), url('https://picsum.photos/1280/865')">
-            <div class="container container-hero-content">
-                <h1 class="heading-1">{{ app.user.getProfile.getHeading|default('Welcome To My FedImg Feed') }}<br></h1>
-            </div>
-        </section>
+        {% block navbar %}
+            <nav class="container navbar">
+                {% if app.user %}
+                    <a class="link-text logo-nav-link" href="{{ path('profile') }}">
+                        {{ app.user.getUsername }}<br />Profile
+                    </a>
+                    <a class="link-text logo-nav-link" href="{{ path('feed-follow',{'usercode':userCode}) }}">
+                        Follow Me<br />{{ userCode }}
+                    </a>
+                {% else %}
+                    <span class="link-text logo-nav-link">Search for me in your FedImg at {{ userCode }}</span>
+                {% endif %}
+            </nav>
         {% endblock %}
 
-{% block feed %}
-    <section class="container projects-section" id="projects">
-        {% for row in feed|batch(2, null) %}
-            <div class="container sd-two-cols two-column-pictures">
-                {% for pic in row %}
-                    {% if pic %}
-                        {% if pic.isPublic %}
-                            <div class="container container-center-picture">
-                                <div class="responsive-picture picture-project">
-                                    <picture>
-                                        <img alt="{{pic.getTitle}}"
-                                            width="1920"
-                                            height="1280"
-                                            src="{{ vich_uploader_asset(pic) }}"
-                                            loading="lazy" />
-                                    </picture>
-                                </div>
-                                <h3 class="heading-3">
-                                    {{ pic.getTitle }}
-                                </h3>
-                            </div>
-                        {% endif %}
-                    {% endif %}
+        {% block hero %}
+            <section class="container hero-section" style="background-image: linear-gradient(25deg, rgba(26, 26, 26, 1) 0%, rgba(0, 0, 0, 0) 50%), url('https://picsum.photos/1280/865')">
+                <div class="container container-hero-content">
+                    <h1 class="heading-1">{{ app.user.getProfile.getHeading|default('Welcome To My FedImg Feed') }}<br></h1>
+                </div>
+            </section>
+        {% endblock %}
+
+        {% block feed %}
+            <section class="container projects-section" id="projects">
+                {% for row in feed|batch(2, null) %}
+                    <div class="container sd-two-cols two-column-pictures">
+                        {% for pic in row %}
+                            {% if pic %}
+                                {% if pic.isPublic %}
+                                    <div class="container container-center-picture">
+                                        <div class="responsive-picture picture-project">
+                                            <picture>
+                                                {% if pic.getImageName %}
+                                                    <img alt="{{pic.getTitle}}"
+                                                         width="1920"
+                                                         height="1280"
+                                                         src="{{ vich_uploader_asset(pic) }}"
+                                                         loading="lazy" />
+                                                {% else %}
+                                                    <img alt="{{pic.getTitle}}"
+                                                         width="1920"
+                                                         height="1280"
+                                                         src="//{{ pic.getImageUrl }}"
+                                                         loading="lazy" />
+                                                {% endif %}
+                                            </picture>
+                                        </div>
+                                        <h3 class="heading-3">
+                                            {{ pic.getTitle }}
+                                        </h3>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 {% endfor %}
-            </div>
-        {% endfor %}
-    </section>
-{% endblock %}
+            </section>
+        {% endblock %}
 
         {# Why am I keeping this here?  Someday, I might want videos.
         <section class="container video-section">
@@ -86,21 +94,21 @@
 
 
         {% block footer %}
-        <footer class="container footer">
-            <div class="container footer-3-columns">
-                <div class="container description-logos-footer">
-                    <h4 class="headline-footer">FedImg For a Person</h4>
+            <footer class="container footer">
+                <div class="container footer-3-columns">
+                    <div class="container description-logos-footer">
+                        <h4 class="headline-footer">FedImg For a Person</h4>
+                    </div>
+                    <div class="container container-links-footer-wrapper-1">
+                        <a class="link-text link-footer" href="#">Contact</a>
+                        <a class="link-text link-footer" href="#">Instagram</a>
+                    </div>
+                    <div class="container container-direction-footer">
+                        <p class="paragraph direction-footer">Valencia 190<br>08011 Barcelona</p>
+                        <a class="link-text link-footer" href="#">info@yourbrand.com</a>
+                    </div>
                 </div>
-                <div class="container container-links-footer-wrapper-1">
-                    <a class="link-text link-footer" href="#">Contact</a>
-                    <a class="link-text link-footer" href="#">Instagram</a>
-                </div>
-                <div class="container container-direction-footer">
-                    <p class="paragraph direction-footer">Valencia 190<br>08011 Barcelona</p>
-                    <a class="link-text link-footer" href="#">info@yourbrand.com</a>
-                </div>
-            </div>
-        </footer>
+            </footer>
         {% endblock %}
     </body>
 </html>

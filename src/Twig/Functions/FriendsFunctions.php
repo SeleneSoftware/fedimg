@@ -67,29 +67,60 @@ class FriendsFunctions implements RuntimeExtensionInterface
             if (!in_array($code[0], $content['Users'])) {
                 return ['error' => 'No User Found'];
             }
-            $imagePath = $content['ImgPath'];
         }
+        $imagePath = $content['ImgPath'];
 
         $response = $this->client->request(
             'GET',
             'https://'.$host->getUrl().'/api/user/'.$code[0]
         );
 
-        if (200 !== $response->getStatusCode()) {
-            return ['error' => 'No Message Yet'];
+        try {
+            $content = $response->toArray();
+        } catch (\Exception $e) {
+            return ['error' => $response->toArray(false)];
         }
-
-        $content = $response->toArray();
         $posts = [];
         foreach ($content['posts'] as $post) {
             $p = new Post();
             $p->setTitle($post['title'])
               ->setImageUrl($host->getUrl().$imagePath.$post['name'])
               ->setUpdatedAt(new \DateTimeImmutable($post['updated']['date'], new \DateTimeZone($post['updated']['timezone'])))
+          ->setPublic(true)
             ;
             $posts[] = $p;
         }
 
         return $posts;
+    }
+
+    public function getRandomHostsUsers()
+    {
+        $repo = $this->doctrine->getRepository(HostOrg::class);
+        $hosts = $repo->findAll();
+        shuffle($hosts);
+        $ret = [];
+        // $slice = array_slice($all, 0, 10);
+        foreach (array_slice($hosts, 0, 10) as $h) {
+            $response = $this->client->request(
+                'GET',
+                'https://'.$h->getUrl().'/api'
+            );
+
+            try {
+                $content = $response->toArray();
+            } catch (\Exception $e) {
+                return ['error' => $response->toArray(false)];
+            }
+
+            $friends = $content['Users'];
+            shuffle($friends);
+
+            foreach (array_slice($friends, 0, 10) as $f) {
+                $ret[] = $f.'@'.$content['SiteNick'];
+            }
+        }
+
+        return $ret;
     }
 }
